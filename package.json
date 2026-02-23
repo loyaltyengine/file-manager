@@ -1,0 +1,27 @@
+{
+  "name": "file-manager-api",
+  "version": "1.0.0",
+  "description": "File Manager API",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Loyalty Engine",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.5",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0",
+    "prettier": "^3.8.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
