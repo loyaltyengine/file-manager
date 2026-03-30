@@ -1,0 +1,111 @@
+openapi: 3.1.1
+info:
+  title: File Manager API
+  version: 1.0.0
+  description: File Manager API
+paths:
+  /v1/files:
+    post:
+      summary: Upload a file
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+    get:
+      summary: Get all files
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Status:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+
+    ErrorType:
+      type: string
+      enum:
+        - bad_request
+        - not_found
+        - server_error
+
+    Response:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+
+    ErrorResponse:
+      type: object
+      required:
+        - status
+        - description
+        - error
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        description:
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorType'
+
+    ClientFile:
+      type: object
+      required:
+        - id
+        - filename
+        - type
+        - size
+
+        - bucket
+        - storage
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        type:
+          type: string
+        size:
+          type: number
+        bucket:
+          type: string
+        storage:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    FileResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - type: object
+          required:
+            - file
+          properties:
+            file:
+              $ref: '#/components/schemas/ClientFile'

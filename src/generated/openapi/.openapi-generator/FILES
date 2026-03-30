@@ -1,0 +1,11 @@
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ClientFile.ts
+models/ErrorResponse.ts
+models/ErrorType.ts
+models/FileResponse.ts
+models/Response.ts
+models/Status.ts
+models/index.ts
+runtime.ts
